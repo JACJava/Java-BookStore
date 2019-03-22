@@ -59,6 +59,9 @@ public class ControllerServlet extends HttpServlet {
 				case "/insert":
 					insertBook(request, response);
           break;
+				case "/delete":
+						deleteBook(request, response);
+						break;
         default:
 				   listBooks(request, response);
            break;
@@ -104,6 +107,15 @@ public class ControllerServlet extends HttpServlet {
 		bookDAO.insertBook(newBook);
 		response.sendRedirect("list");
 	}
+
+/* added deleteBook item 20190322 */
+	private void deleteBook(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+	}
+
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
