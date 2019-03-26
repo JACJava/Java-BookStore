@@ -47,7 +47,12 @@ public class ControllerServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException  {
 		String action = request.getPathInfo();
-
+		/******************************************************************************/
+		/*                                                                            */
+		/* 20190326 Pluralsight Delete Boooks from a Database                         */
+		/* default is to go to the listbooks method                                   */
+		/*                                                                            */
+		/******************************************************************************/
 		try {
 			switch(action) {
 				case "/admin":
@@ -81,10 +86,26 @@ public class ControllerServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+
+
 	private void listBooks(HttpServletRequest request, HttpServletResponse response)
 			throws ClassNotFoundException, SQLException, ServletException, IOException {
+
+		/******************************************************************************/
+		/*                                                                            */
+	  /* 20190326 Pluralsight Delete Boooks from a Database                         */
+		/* listbooks calls bookDAO for listAllBooks                                   */
+		/*                                                                            */
+		/******************************************************************************/
+
 		ArrayList<Book> books_list = bookDAO.listAllBooks();
 
+		/******************************************************************************/
+		/*                                                                            */
+		/* 20190326 Pluralsight Delete Boooks from a Database                         */
+		/* then, listBooks forwards the book list to the book.jsp page                */
+		/*                                                                            */
+		/******************************************************************************/
 		request.setAttribute("books", books_list);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/BookList.jsp");
 		dispatcher.forward(request, response);
@@ -111,7 +132,10 @@ public class ControllerServlet extends HttpServlet {
 /* added deleteBook item 20190322 */
 	private void deleteBook(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+				int id = Integer.parseInt(request.getParameter("id"));
+				bookDAO.deleteBook(id);
 
+				response.sendRedirect("list");
 	}
 
 

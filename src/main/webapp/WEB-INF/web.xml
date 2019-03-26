@@ -12,6 +12,12 @@
   	<servlet-class>com.pluralsight.ControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
+    <!--***************************************************************-->
+    <!--                                                               -->
+    <!--20190326 Pluralsight Deleting Books from a Database            -->
+    <!--any url that starts with "books" goes to ControllerServlet.java-->
+    <!--                                                               -->
+    <!--***************************************************************-->
   	<servlet-name>ControllerServlet</servlet-name>
   	<url-pattern>/books/*</url-pattern>
   </servlet-mapping>

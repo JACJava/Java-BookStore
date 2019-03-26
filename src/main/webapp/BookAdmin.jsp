@@ -32,8 +32,23 @@
 	                    <td> ${ item.getTitle() } </td>
 	                    <td> ${ item.getAuthor() } </td>
 	                    <td> <fmt:formatNumber value = "${ item.getPrice() }" type = "currency"/>  </td>
-                      <td> <a href="#edit?id=<c:out value='${item.getId()}' />">Edit</a>
-                           <a href="#delete?id=<c:out value='${item.getId()}' />">Delete</a> </td>
+                      <%--**********************************************************************************************--%>
+                      <%--                                                                                              --%>
+                      <%-- 20190326 Pluralsight Delete Books from a Database   2:11 - 2:2                               --%>
+                      <%-- add functionality to the edit and delete links.  First, make links past id of select book    --%>
+                      <%-- the edit or delete url.  we can do that by using the java standard tag library c:            --%>
+                      <%-- this took forever -- left the "#" in front of the edit and delete commands by mistake!!!     --%>
+                      <%--                                                                                              --%>
+                      <%--**********************************************************************************************--%>
+
+                      <%--
+                      <td> <a href="#edit">Edit</a>
+                          <a href="#delete">Delete</a> </td>
+                        --%>
+
+                      <td> <a href="edit?id=<c:out value='${item.getId()}' />">Edit</a>
+                          <a href="delete?id=<c:out value='${item.getId()}' />">Delete</a> </td>
+
 	                </tr>
 	            </c:forEach>
 	        </table>

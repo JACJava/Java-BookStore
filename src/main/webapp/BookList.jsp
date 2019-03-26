@@ -25,7 +25,13 @@
 	                <th>Author</th>
 	                <th>Price</th>
 	            </tr>
-
+<%--**********************************************************************************************--%>
+<%--                                                                                              --%>
+<%-- 20190326 Pluralsight Delete Books from a Database                                            --%>
+<%-- for each loop that displays each book from the table, that's how we get the result we see    --%>
+<%-- in the browser                                                                               --%>
+<%--                                                                                              --%>
+<%--**********************************************************************************************--%>
 	 			<c:forEach items="${books}" var="item">
 	                <tr><form name="cart_form" action="/cart/addcart">
                       <input type="hidden" name="id" value="<c:out value='${item.getId()}' />" />

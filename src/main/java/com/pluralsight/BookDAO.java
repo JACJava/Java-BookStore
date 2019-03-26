@@ -44,6 +44,12 @@ public class BookDAO {
       return book;
     }
 
+    /******************************************************************************/
+  	/*                                                                            */
+  	/* 20190326 Pluralsight Delete Boooks from a Database                         */
+  	/* listAllBooks selects all books from the books table in the sql database    */
+  	/*                                                                            */
+  	/******************************************************************************/
     public ArrayList<Book> listAllBooks() {
       ArrayList<Book> listBook = new ArrayList<>();
 
