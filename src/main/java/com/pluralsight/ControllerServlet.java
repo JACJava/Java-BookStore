@@ -67,6 +67,9 @@ public class ControllerServlet extends HttpServlet {
 				case "/delete":
 						deleteBook(request, response);
 						break;
+				case "/edit":
+						showEditForm(request, response);
+						break;
         default:
 				   listBooks(request, response);
            break;
@@ -93,7 +96,7 @@ public class ControllerServlet extends HttpServlet {
 
 		/******************************************************************************/
 		/*                                                                            */
-	  /* 20190326 Pluralsight Delete Boooks from a Database                         */
+	  /* 20190326 Pluralsight Delete Books from a Database                          */
 		/* listbooks calls bookDAO for listAllBooks                                   */
 		/*                                                                            */
 		/******************************************************************************/
@@ -129,7 +132,12 @@ public class ControllerServlet extends HttpServlet {
 		response.sendRedirect("list");
 	}
 
-/* added deleteBook item 20190322 */
+	/******************************************************************************/
+	/*                                                                            */
+	/* 20190322 Pluralsight Delete Boooks from a Database                         */
+	/* added deleteBook routine                                                   */
+	/*                                                                            */
+	/******************************************************************************/
 	private void deleteBook(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 				int id = Integer.parseInt(request.getParameter("id"));
@@ -137,9 +145,21 @@ public class ControllerServlet extends HttpServlet {
 
 				response.sendRedirect("list");
 	}
+	/******************************************************************************/
+	/*                                                                            */
+	/* 20190326 Showing an Edit Form                                              */
+	/* added showEditForm                                                         */
+	/*                                                                            */
+	/******************************************************************************/
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-
-
+				int id = Integer.parseInt(request.getParameter("id"));
+				Book existingBook = bookDAO.getBook(id);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/BookForm.jsp");
+				request.setAttribute("book", existingBook);
+				dispatcher.forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
