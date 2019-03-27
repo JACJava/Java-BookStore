@@ -56,23 +56,26 @@ public class ControllerServlet extends HttpServlet {
 		try {
 			switch(action) {
 				case "/admin":
-					 showBookAdmin(request, response);
-           break;
+					 	showBookAdmin(request, response);
+           	break;
 			  case "/new":
-					showNewForm(request, response);
-          break;
+						showNewForm(request, response);
+          	break;
 				case "/insert":
-					insertBook(request, response);
-          break;
+						insertBook(request, response);
+          	break;
 				case "/delete":
 						deleteBook(request, response);
 						break;
 				case "/edit":
 						showEditForm(request, response);
 						break;
+				case "/update":
+						updateBook(request, response);
+						break;
         default:
-				   listBooks(request, response);
-           break;
+				   	listBooks(request, response);
+           	break;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -160,6 +163,28 @@ public class ControllerServlet extends HttpServlet {
 				request.setAttribute("book", existingBook);
 				dispatcher.forward(request, response);
 	}
+
+	/******************************************************************************/
+	/*                                                                            */
+	/* 20190327 Updating Books in a Database                                      */
+	/* added updateBook                                                           */
+	/*                                                                            */
+	/******************************************************************************/
+	private void updateBook(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+				int id = Integer.parseInt(request.getParameter("id"));
+				String title = request.getParameter("booktitle");
+				String author = request.getParameter("bookauthor");
+				String price = request.getParameter("bookprice");
+
+				Book newBook = new Book(id, title, author, Float.parseFloat(price));
+
+				bookDAO.updateBook(newBook);
+				response.sendRedirect("list");
+
+	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
